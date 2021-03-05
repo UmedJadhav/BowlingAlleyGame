@@ -9,7 +9,11 @@ class Bowling_Game:
         self.score_calculator = score_calc
     
     def score_of_game(self, input):
-        parsed_roll = self._roll_parser.parse(input)
+        try:
+            parsed_roll = self._roll_parser.parse(input)
+        except Exception as e:
+            print(f"{e}. Please rerun the CLI")
+            quit()
         parsed_frame = self._frame_parser.parse(parsed_roll)
         score = self.score_calculator.calc_score(parsed_frame)
         return score
