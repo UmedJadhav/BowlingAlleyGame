@@ -19,7 +19,11 @@ if __name__ == '__main__':
     
     print(f"Welcome to the Bowling Alley !!")
 
-    no_of_players = int(input('Enter the number of Players: '))
+    try:
+        no_of_players = int(input('Enter the number of Players: '))
+    except:
+        print('No of players must be an integer. Please rerun the CLI')
+        quit()
     players = []
 
     for idx in range(no_of_players):
@@ -31,6 +35,9 @@ if __name__ == '__main__':
     print()
     for player in players:
         player_frame = input(f"Enter {player.get_name()} bowling frame: ")
+        if not player_frame:
+            print('Blank Player Frame is not Allowed')
+            quit()
         player_score = bowling_game.score_of_game(player_frame)
         player.set_final_score(player_score)
     
